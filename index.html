@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HARVY — Manual de Funciones</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #080808;
+      color: #F2EDE4;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #080808;
+      border-bottom: 1px solid #1E1E1E;
+      padding: 28px 32px 24px;
+      text-align: center;
+    }
+
+    .header-logo {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #6B6860;
+      margin-bottom: 14px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #F2EDE4;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .header-badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: #1E1E1E;
+      border: 1px solid #2A2A2A;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 32px 24px 8px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #D8D0C4;
+      margin-bottom: 8px;
+    }
+
+    .intro p {
+      font-size: 13px;
+      color: #6B6860;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: #111111;
+      border: 1px solid #1E1E1E;
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      border-color: #3A3A3A;
+      background: #161616;
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #F2EDE4;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #6B6860;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      background: #1A1A1A;
+      border: 1px solid #2A2A2A;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 10px;
+      color: #888;
+      letter-spacing: 0.05em;
+    }
+
+    .card-arrow {
+      font-size: 16px;
+      color: #3A3A3A;
+      text-align: right;
+      transition: color 0.2s ease;
+    }
+
+    .card:hover .card-arrow {
+      color: #888;
+    }
+
+    /* Colores de acento por sección */
+    .card.agenda { border-left: 3px solid #4A7C59; }
+    .card.email  { border-left: 3px solid #4A6A8C; }
+    .card.docs   { border-left: 3px solid #7C6A4A; }
+    .card.pres   { border-left: 3px solid #7C4A6A; }
+    .card.calif  { border-left: 3px solid #4A7C7C; }
+    .card.datos  { border-left: 3px solid #6A4A7C; }
+    .card.invest { border-left: 3px solid #7C7C4A; }
+    .card.adic   { border-left: 3px solid #6B6860; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 32px 24px 40px;
+      border-top: 1px solid #1A1A1A;
+      margin-top: 8px;
+    }
+
+    .footer p {
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+    }
+
+    .footer strong {
+      color: #666;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .header { padding: 24px 20px 20px; }
+      .header h1 { font-size: 26px; }
+      .grid { padding: 16px; gap: 12px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo">HORACON SYSTEMS</div>
+    <h1>HARVY</h1>
+    <p>Manual de funciones — Todo lo que tu asistente inteligente puede hacer por ti.</p>
+    <span class="header-badge">Versión 1.0 · Abril 2026</span>
+  </header>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <h2>Elige una sección para explorar</h2>
+    <p>Cada sección explica las funciones de HARVY en esa área, con ejemplos concretos y cómo activarlas desde el chat.</p>
+  </div>
+
+  <!-- GRID DE SECCIONES -->
+  <div class="grid">
+
+    <a class="card agenda" href="agenda.html">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Agenda y Tiempo</div>
+      <div class="card-desc">
+        Crea eventos en tu Google Calendar, recibe tu briefing matutino, detecta conflictos de horario y gestiona tu tiempo entre trabajo y universidad.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Google Calendar</span>
+        <span class="tag">Recordatorios</span>
+        <span class="tag">Briefing</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card email" href="email.html">
+      <div class="card-icon">📧</div>
+      <div class="card-title">Email y Comunicación</div>
+      <div class="card-desc">
+        Redacta, responde y organiza tus correos de Gmail. HARVY entiende el contexto de cada mensaje y mantiene tu tono profesional.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Gmail</span>
+        <span class="tag">Redacción</span>
+        <span class="tag">Seguimiento</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card docs" href="documentos.html">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Documentos y Archivos</div>
+      <div class="card-desc">
+        Sube, analiza y resume documentos PDF, Word y Excel. HARVY extrae lo importante y lo organiza en tu Google Drive automáticamente.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Google Drive</span>
+        <span class="tag">PDF</span>
+        <span class="tag">Word</span>
+        <span class="tag">Excel</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card pres" href="presentaciones.html">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Presentaciones y Clases</div>
+      <div class="card-desc">
+        Prepara materiales para tus clases universitarias, crea esquemas de presentaciones y genera contenido pedagógico listo para usar.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Pedagogía</span>
+        <span class="tag">PowerPoint</span>
+        <span class="tag">Material didáctico</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card calif" href="calificacion.html">
+      <div class="card-icon">★</div>
+      <div class="card-title">Calificación y Alumnos</div>
+      <div class="card-desc">
+        Sistema de rúbricas inteligentes para calificar trabajos. HARVY evalúa, justifica y genera el cuadro de notas — tú apruebas antes de entregar.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Rúbricas</span>
+        <span class="tag">Notas</span>
+        <span class="tag">Retroalimentación</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card datos" href="datos.html">
+      <div class="card-icon">📈</div>
+      <div class="card-title">Datos y Análisis</div>
+      <div class="card-desc">
+        Analiza reportes de ventas, costos e indicadores laborales con rúbricas configuradas. Dashboards automáticos en Excel, PDF o PowerPoint.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Dashboard</span>
+        <span class="tag">Reportes</span>
+        <span class="tag">KPIs</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card invest" href="investigacion.html">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">Investigación e Información</div>
+      <div class="card-desc">
+        Busca y analiza literatura académica con Perplexity + Claude Opus. Cinco modos especializados: tesis, pedagogía, análisis crítico y más.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Perplexity</span>
+        <span class="tag">Tesis</span>
+        <span class="tag">Papers</span>
+        <span class="tag">Evidencia</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card adic" href="adicionales.html">
+      <div class="card-icon">✦</div>
+      <div class="card-title">Funciones Adicionales</div>
+      <div class="card-desc">
+        Transcripción de audio, privacidad y gestión de datos, mensajes de voz, comparación de documentos y todas las funciones complementarias.
+      </div>
+      <div class="card-tags">
+        <span class="tag">Audio</span>
+        <span class="tag">Privacidad</span>
+        <span class="tag">Extras</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      <strong>HARVY — HORACON SYSTEMS</strong><br />
+      Tu asistente inteligente personal · Versión 1.0 · Abril 2026<br />
+      Para soporte escribe <strong>"ayuda"</strong> directamente en el chat de HARVY.
+    </p>
+  </footer>
+
+</body>
+</html>
